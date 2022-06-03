@@ -1,0 +1,12 @@
+.Welcome-to {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#tester {
+  margin-top: 50px;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 1000px;
+  height: 500px;
+}

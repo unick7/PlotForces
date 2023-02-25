@@ -25,9 +25,8 @@ const counted = new Map();
 search.addEventListener("click", (event) => {
   event.preventDefault();
 
-  let sValue = document.getElementById("sValue");
-  fetchProblemList(sValue.value);
-  sValue.value = "";
+  let userHandle = document.getElementById("userHandle");
+  fetchProblemList(userHandle.value);
 });
 
 async function fetchProblemList(arg) {
@@ -39,13 +38,12 @@ async function fetchProblemList(arg) {
   }
 
   const users = await response.json();
-  console.log(users);
   const user_data = users.result;
-  console.log(user_data);
 
   for (let rating = 800; rating <= 4000; rating += 100) {
     problems.set(rating, 0);
   }
+
   for (let user in user_data) {
     let level = user_data[user].problem.rating;
     let problem_name = user_data[user].problem.name;
@@ -55,6 +53,7 @@ async function fetchProblemList(arg) {
       counted.set(problem_name, false);
     }
   }
+
   for (let user in user_data) {
     let level = user_data[user].problem.rating;
     let problem_name = user_data[user].problem.name;
@@ -70,6 +69,7 @@ async function fetchProblemList(arg) {
       counted.set(problem_name, true);
     }
   }
+  
   plotGraph();
 }
 

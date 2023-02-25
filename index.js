@@ -1,14 +1,22 @@
-function typeWrite(element) {
-  const textoArray = element.innerHTML.split("");
+function typeWriterEffect(element) {
+  const letterArray = element.innerHTML.split("");
   element.innerHTML = " ";
-  textoArray.forEach(function (letter, i) {
+  letterArray.forEach(function (letter, i) {
     setTimeout(function () {
       element.innerHTML += letter;
     }, 75 * i);
   });
 }
-const text = document.querySelector(".Welcome-to");
-typeWrite(text);
+
+// 'typeWrite' takes an HTML element as its argument.
+// The function splits the text content of the element into an array of characters
+// then sets the element's innerHTML to an empty string.
+// The function then iterates through the array of characters,
+// adding each character back to the element's innerHTML
+// one at a time with a delay of 75 milliseconds between each character.
+
+const welcomeText = document.getElementById("Welcome-to");
+typeWriterEffect(welcomeText);
 
 let search = document.getElementById("search");
 const problems = new Map();
@@ -62,9 +70,10 @@ async function fetchProblemList(arg) {
       counted.set(problem_name, true);
     }
   }
-  fun();
+  plotGraph();
 }
-function fun() {
+
+function plotGraph() {
   let keys = Array.from(problems.keys());
   let values = Array.from(problems.values());
 
@@ -72,6 +81,7 @@ function fun() {
   var yArray = values;
 
   TESTER = document.getElementById("tester");
+  
   var data = [
     {
       x: xArray,
@@ -80,10 +90,12 @@ function fun() {
       type: "scatter",
     },
   ];
+  
   var layout = {
     xaxis: { range: [700, 3500], title: "Problems Difficulty" },
     yaxis: { range: [0, 300], title: "No. of Problems Solved" },
     title: "Plot",
   };
+  
   Plotly.newPlot("tester", data, layout);
 }

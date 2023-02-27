@@ -32,6 +32,8 @@ search.addEventListener("click", (event) => {
 async function fetchProblemList(arg) {
   let url = `https://codeforces.com/api/user.status?handle=${arg}`;
   const response = await fetch(url);
+  // The await keyword is used to pause the execution of 
+  // the code until the response is received from the server.
   if (response.status != 200) {
     window.alert("Please Enter a Valid Username");
     return 0;
@@ -69,7 +71,7 @@ async function fetchProblemList(arg) {
       counted.set(problem_name, true);
     }
   }
-  
+
   plotGraph();
 }
 
@@ -81,7 +83,7 @@ function plotGraph() {
   var yArray = values;
 
   TESTER = document.getElementById("tester");
-  
+
   var data = [
     {
       x: xArray,
@@ -90,12 +92,12 @@ function plotGraph() {
       type: "scatter",
     },
   ];
-  
+
   var layout = {
     xaxis: { range: [700, 3500], title: "Problems Difficulty" },
     yaxis: { range: [0, 300], title: "No. of Problems Solved" },
     title: "Plot",
   };
-  
+
   Plotly.newPlot("tester", data, layout);
 }
